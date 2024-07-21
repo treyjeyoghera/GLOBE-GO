@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import EditReviewForm from './EditReviewForm.js';  
+import './UserReviews.css';
 
 const UserReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -16,7 +17,7 @@ const UserReviews = () => {
           return;
         }
 
-        const response = await axios.get('/traveler/user_reviews', {
+        const response = await axios.get('https://globe-gooo.onrender.com/traveler/user_reviews', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -41,7 +42,7 @@ const UserReviews = () => {
         return;
       }
 
-      await axios.delete(`/traveler/user_reviews/${reviewId}`, {
+      await axios.delete(`https://globe-gooo.onrender.com/traveler/user_reviews/${reviewId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -55,7 +56,7 @@ const UserReviews = () => {
 
   const handleReviewUpdated = () => {
     setEditingReviewId(null);
-    axios.get('/traveler/user_reviews', {
+    axios.get('https://globe-gooo.onrender.com/traveler/user_reviews', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
       }
@@ -67,7 +68,7 @@ const UserReviews = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="user-reviews">
       <h2>Your Reviews</h2>
       {reviews.length > 0 ? (
         <ul>
@@ -84,7 +85,7 @@ const UserReviews = () => {
                       <p>Location:</p>
                       <p>Name: {review.location.name}</p>
                       {review.location.image_url && (
-                        <img src={review.location.image_url} alt={review.location.name} style={{ maxWidth: '100px' }} />
+                        <img src={review.location.image_url} alt={review.location.name} />
                       )}
                     </div>
                   )}
@@ -96,7 +97,7 @@ const UserReviews = () => {
           ))}
         </ul>
       ) : (
-        <p>No reviews found</p>
+        <p className="no-reviews">No reviews found</p>
       )}
     </div>
   );
