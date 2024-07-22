@@ -46,6 +46,8 @@ This basic solution prioritizes ease of use and core functionalities. You can ex
 ## Project Overview
 GlobeGo is a comprehensive travel planning web application designed to streamline the process of organizing and enjoying trips. Users can browse destinations, view detailed information, and create personalized travel itineraries. Registered users can create accounts, plan trips, and share their experiences through travel journals and reviews.
 
+This project uses a Flask API backend with SQLAlchemy for ORM and a React frontend.
+
 # Features
 - Destination Browsing: Explore various travel destinations with detailed information.
 - User Reviews: Write, update, and delete reviews for different locations.
@@ -73,6 +75,9 @@ Frontend:
 - Language: JavaScript
 - Framework: React
 - Routing: React Router
+- Axios (for HTTP requests)
+- Formik (for form management)
+- Yup (for form validation)
 
 Development Tools:
 - Version Control:Git and GitHub
@@ -248,13 +253,17 @@ The structure of the application should be as follows:
 - auth.py: Manages user authentication, including registration, login, and JWT handling.
 - administrator.py: Contains routes and logic for administrative tasks.
 - traveler.py: Handles traveler-related routes, such as viewing locations, purchasing tickets, and posting reviews.
+- config.py: Configuration settings for the Flask application.
 - migrations/: Manages database migrations using Flask-Migrate.
 
 ### Frontend
 - src/index.js: Entry point of the React application. Renders the main component and sets up routing.
+- src/App.js: Main React component with routing setup.
 - src/components/Locations.js: Displays a list of locations and allows users to view details, purchase tickets, and write reviews.
 - src/components/UserReviews.js: Shows the logged-in user's reviews, with options to update or delete them.
 - src/components/EditReviewForm.js: Handles the patch method for the reviews.
+- public/: Contains static files and assets.
+
 
 ## Usage
 - Register a new user account.
@@ -267,6 +276,7 @@ The structure of the application should be as follows:
 1. Authentication
     - POST /auth/register: Registers a new user.
     - POST /auth/login: Logs in a user and returns a JWT token.
+    - GET /auth/user: Get details of the logged-in user.
 
 2. Traveler
     - GET /traveler/locations: Retrieves a list of all locations.
@@ -312,8 +322,17 @@ The structure of the application should be as follows:
 
 
 ## Contributing
-If you would like to contribute to this project, please fork the repository and submit a pull request.
+If you would like to contribute to this project, please:
+  1. Fork the Repository.
+  2. Create a Feature Branch: git checkout -b feature/your-feature.
+  3. Commit Your Changes: git commit -am 'Add new feature'.
+  4. Push to the Branch: git push origin feature/your-feature.
+  5. Create a New Pull Request.
 
 # License
 This project is licensed under the MIT License - see the LICENSE.md file for details.
+
+## Contact
+For any questions or feedback, please contact lennis.maina@student.moringaschool.com.
+
 
